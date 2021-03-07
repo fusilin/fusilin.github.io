@@ -81,7 +81,8 @@ try {
     }
 
     function show_time() {
-        document.getElementById('div2').innerHTML = currentYear + '年' + currentMonth + '月' + currentDate + '日' + currentTime + '时' + Time.getMinutes() + '分' + Time.getSeconds() + '秒'
+        var newTime = new Date()
+        document.getElementById('div2').innerHTML = newTime.getFullYear() + '年' + (newTime.getMonth() + 1) + '月' + newTime.getDate() + '日' + newTime.getHours() + '时' + newTime.getMinutes() + '分' + newTime.getSeconds() + '秒'
         var time_combin = new Date('2021/02/16 14:16:00').getTime()//定格相识时间
         var time_now = new Date().getTime() //系统当前时间
         var time_love = time_now - time_combin

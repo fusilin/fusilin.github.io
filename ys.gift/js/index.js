@@ -3,8 +3,10 @@ try {
     var YS_IMG = "img/YS.jpeg"
     var FSL_IMG = "img/FSL.jpeg"
     var YS_FSL_IMG = "img/YSFSL.png"
-    var itemYS = ['以后我们一起养一只猫咪和一条狗狗']
-    var itemFSL = ['😍', '我希望你每天都能够开开心心呀！', '选择自己所爱的，爱自己所选择的！', '每天晚上要像zhu一样睡得香，哈哈！', '外出注意安全！晚上不要一个人外出！', '每天按时吃饭、按时起床睡觉。', '有什么烦恼就要记得跟我说呀', '同甘共苦！', '相信不管过多久，我们的本性都不会变！', '未来可期！', '天冷记得加衣！', '有机会晚上可以试着泡泡jio', '有幸遇见你！', '我们一起加油！', '笑一个呗', '看看今天是我们相识多长时间了', '遇见你是最美好的意外！', '你看到我送你的这个礼物第一感觉是什么？', '相信奇迹！', '乖，摸摸头！', '慢慢更多的理解家人']
+    var CAT_IMG = "img/cat.jpeg"
+    var itemYS = []
+    var itemCAT = ['以后我们一起养一只猫咪和一条狗狗']
+    var itemFSL = ['😍', '我希望你每天都能够开开心心呀！', '选择自己所爱的，爱自己所选择的！', '每天晚上要像zhu一样睡得香，哈哈！', '外出注意安全，晚上尽量不要一个人外出呗！', '每天按时吃饭、按时起床睡觉。', '有什么烦恼就要记得跟我说呀', '同甘共苦！', '未来可期！', '天冷记得加衣！', '有机会晚上可以试着泡泡jio', '有幸遇见你！', '我们一起加油！', '笑一个呗', '看看今天是我们相识多长时间了', '遇见你是最美好的意外！', '你看到我送你的这个礼物第一感觉是什么？', '相信奇迹！', '乖，摸摸头！', '慢慢更多的理解家人']
     var itemOUR = ['如果你看到了这句，那就说明你在想我我也在想你了，那么你就不要犹豫了，给我发个信息吧，这句话点中的概率是很小的勒。你看看特制的背景图！']
     var itemMONRING = ['早上好呀，诗诗']
     var itemZW = ['睡个午觉吧']
@@ -12,9 +14,13 @@ try {
     var itemNIGHT = ['不早了，早点休息呗']
     var itemTOONIGHT = ['深夜了，赶紧睡觉，不要看了呗']
     var week = ['', '一', '二', '三', '四', '五', '']
-    var currentTime = new Date().getHours()
-    var currentWeek = new Date().getDay()
-    var item = itemYS.concat(itemFSL).concat(itemOUR)
+    var Time = new Date()
+    var currentYear = Time.getFullYear()
+    var currentMonth = Time.getMonth() + 1
+    var currentDate = Time.getDate()
+    var currentTime = Time.getHours()
+    var currentWeek = Time.getDay()
+    var item = itemYS.concat(itemFSL).concat(itemOUR).concat(itemCAT)
     if (currentTime >= 7 && currentTime <= 10) {
         item = item.concat(itemMONRING)
     } else if (currentTime === 12 || currentTime === 13) {
@@ -38,21 +44,44 @@ try {
     function stop() {
         clearTimeout(stopnum)
         var currentText = document.getElementById('div3').innerHTML || ''
-        if (itemFSL.includes(currentText) && document.getElementById('div0').background !== YS_IMG) {
+        var currentBackground = document.getElementById('div0').background || ''
+        if (itemFSL.includes(currentText) && currentBackground !== YS_IMG) {
             document.getElementById('div0').background = YS_IMG
-        } else if (itemYS.includes(currentText) && document.getElementById('div0').background !== FSL_IMG) {
+        } else if (itemYS.includes(currentText) && currentBackground !== FSL_IMG) {
             document.getElementById('div0').background = FSL_IMG
-        } else if (itemOUR.includes(currentText) && document.getElementById('div0').background !== YS_FSL_IMG) {
+        } else if (itemOUR.includes(currentText) && currentBackground !== YS_FSL_IMG) {
             document.getElementById('div0').background = YS_FSL_IMG
+        } else if (itemCAT.includes(currentText) && currentBackground !== CAT_IMG) {
+            document.getElementById('div0').background = CAT_IMG
         }
         document.getElementById('lovenow').disabled = true
         document.getElementById('lovebegin').disabled = false
     }
 
-    //var d=new Date()//为日期命名
+    function onloadFunc() {
+        // 动态插入内容①周末愉快②520快乐③下班快乐④划水快乐⑤早上好⑥中午好⑦晚上好
+        if (currentMonth === 3 && currentDate === 7) {
+            document.getElementById('div3').innerHTML = '诗诗，女王节快乐哟！<br />️<br />️<br />️&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--四林'
+        } else if (!week[currentWeek]) {
+            document.getElementById('div3').innerHTML = '周末愉快！'
+        } else if (currentMonth === 5 && currentDate === 20) {
+            document.getElementById('div3').innerHTML = '诗诗，情人节快乐哟！❤️'
+        } else if (currentTime === 18 && currentMonth < 5) {
+            document.getElementById('div3').innerHTML = 'so happy, 下班啦️'
+        } else if (currentTime > 14 && currentTime < 18 && currentMonth < 5) {
+            document.getElementById('div3').innerHTML = '来划水啦😁'
+        } else if (currentTime > 6 && currentTime < 11) {
+            document.getElementById('div3').innerHTML = '早上好呀'
+        } else if (currentTime === 12) {
+            document.getElementById('div3').innerHTML = '中午好呀'
+        } else if (currentTime > 18 && currentTime < 20) {
+            document.getElementById('div3').innerHTML = '晚上好呀'
+        }
+        show_time()
+    }
+
     function show_time() {
-        var Time = new Date()
-        document.getElementById('div2').innerHTML = Time.getFullYear() + '年' + (Time.getMonth() + 1) + '月' + Time.getDate() + '日' + Time.getHours() + '时' + Time.getMinutes() + '分' + Time.getSeconds() + '秒'
+        document.getElementById('div2').innerHTML = currentYear + '年' + currentMonth + '月' + currentDate + '日' + currentTime + '时' + Time.getMinutes() + '分' + Time.getSeconds() + '秒'
         var time_combin = new Date('2021/02/16 14:16:00').getTime()//定格相识时间
         var time_now = new Date().getTime() //系统当前时间
         var time_love = time_now - time_combin

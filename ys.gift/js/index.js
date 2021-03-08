@@ -74,7 +74,7 @@ try {
             document.getElementById('div3').innerHTML = '诗诗，早上好呀'
         } else if (currentTime === 12) {
             document.getElementById('div3').innerHTML = '诗诗，中午好呀'
-        } else if (currentTime > 18 && currentTime < 20) {
+        } else if (currentTime > 18 && currentTime < 22) {
             document.getElementById('div3').innerHTML = '诗诗，晚上好呀'
         }
         show_time()

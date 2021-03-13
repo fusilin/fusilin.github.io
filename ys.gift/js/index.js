@@ -60,8 +60,9 @@ try {
 
     function onloadFunc() {
         // 动态插入内容①周末愉快②520快乐③下班快乐④划水快乐⑤早上好⑥中午好⑦晚上好
-        if (currentMonth === 3 && currentDate === 7) {
-            document.getElementById('div3').innerHTML = '诗诗，女王节快乐哟！<br />️<br />️<br />️&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--四林'
+        if (currentMonth === 3 && currentDate === 14) {
+            document.getElementById('div3').innerHTML = '这个月可以和你牵个手吗 因为2021314 嗯 以后得补上这特别的日子'
+            document.getElementById('div0').background = YS_FSL_IMG
         } else if (!week[currentWeek]) {
             document.getElementById('div3').innerHTML = '周末愉快！'
         } else if (currentMonth === 5 && currentDate === 20) {
